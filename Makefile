@@ -1,23 +1,22 @@
 # Source, Executable, Includes, Library Defines
 SRC  = src/main.cpp src/gtstools.cpp src/cpt.cpp src/export.cpp
 OBJ  = $(SRC:.cpp=.o)
-LIBS = -lgts -lglib-2.0 -lsilo -lm -ldl
+LIBS = -lgts -lglib-2.0 -lsilo -lm -ldl `pkg-config --libs gts`
 EXE  = debug/gts-cpt
 
 # Compiler, Linker Defines
 CPP      = /usr/bin/g++
 CPPFLAGS = -Wall -ansi -pedantic -g -O3 -funroll-loops -ftree-vectorize -pg -lc
 
-LIBPATH  = -L../silo/lib
 LIBPATH += -L/usr/local/lib
 
 INCLPATH = -I./include/ 
-INCLPATH+= -I/usr/include/glib-2.0 
+INCLPATH+= `pkg-config --cflags gts`
 INCLPATH+= -I/usr/lib64/glib-2.0/include 
 INCLPATH+= -I/usr/lib/glib-2.0/include 
 INCLPATH+= -I/usr/local/include 
-INCLPATH+= -I../silo/include 
-INCLPATH+= -I../visit/current/linux-intel/include/visit/
+INCLPATH+= -I../silo/include
+INCLPATH+= -I../visit2.2.2/src/sim/V1/lib/
 
 RM       = /bin/rm -f
 
@@ -27,6 +26,7 @@ RM       = /bin/rm -f
 
 # Link all Object Files with external Libraries into Binaries
 $(EXE): $(OBJ)
+	mkdir -p `dirname $(EXE)`
 	$(CPP) -o $(EXE) $(OBJ) $(LIBPATH) $(LIBS)
 
 # Objects depend on these Libraries

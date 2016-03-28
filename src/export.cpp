@@ -8,6 +8,37 @@
 /******************************************************************************
  *
  ******************************************************************************/
+void write_bov(float* var, int* dims, GtsVector& coordMin, const GtsVector& coordMax) {
+  // write 'BOV' file
+  const char* obase = "wall"; // base name for output files
+  char ovalue[1024]; // file with values
+  char obov  [1024]; // BOV file
+  sprintf(ovalue, "%s.values", obase);
+  sprintf(obov  , "%s.bov"   , obase);
+
+  FILE *fp = fopen(ovalue, "wb");
+  int size = dims[0]*dims[1]*dims[2];
+  fwrite((void *)var, sizeof(float), size, fp);
+  fclose(fp);
+
+  FILE *bv = fopen("wall.bov", "wb");
+  fprintf(bv, "#BOV version: 1.0\n");
+  fprintf(bv, "#file written by gts-cpt\n");
+  fprintf(bv, "DATA_FILE: %s\n"  , ovalue);
+  fprintf(bv, "DATA SIZE: %d %d %d\n", dims[0], dims[1], dims[2]);
+  fprintf(bv, "DATA FORMAT: FLOATS\n");
+  fprintf(bv, "VARIABLE: \"wall\"\n");
+  fprintf(bv, "BRICK ORIGIN: %g %g %g\n",
+	  coordMin[0],
+	  coordMin[1],
+	  coordMin[2]);
+  fprintf(bv, "BRICK SIZE: %g %g %g\n",
+	  coordMax[0] - coordMin[0],
+	  coordMax[1] - coordMin[1],
+	  coordMax[2] - coordMin[2]);
+  fclose(bv);
+}
+
 size_t cpt_eulerian_mesh_write_silo(SignedDistance *pSignedDistance,  const char* szFileOut)
 {
 	static const char *coordnames[] = { "X" , "Y" , "Z" };    // Name the coordinate axes 'X' and 'Y'
@@ -71,6 +102,7 @@ size_t cpt_eulerian_mesh_write_silo(SignedDistance *pSignedDistance,  const char
 
 	DBPutQuadvar1(dbfile   , "colorfunction", "CartesianMesh", var   , dims, 3, NULL, 0, DB_FLOAT, DB_NODECENT, NULL);
 
+	write_bov(var, dims, pSignedDistance->coordMin, pSignedDistance->coordMax);
 	DBClose(dbfile);
 
 	free(var);

@@ -6,7 +6,7 @@ EXE  = debug/gts-cpt
 SILO_PREFIX=../prefix-gts-cpt
 
 # Compiler, Linker Defines
-CPP      = /usr/bin/g++
+CPP      = g++
 CPPFLAGS = -Wall -ansi -pedantic -g -O3 -funroll-loops -ftree-vectorize -pg -lc
 
 LIBPATH += -L/usr/local/lib -L${SILO_PREFIX}/lib

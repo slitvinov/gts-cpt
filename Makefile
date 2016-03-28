@@ -5,7 +5,7 @@ LIBS = -lgts -lglib-2.0 -lsilo -lm -ldl `pkg-config --libs gts`
 EXE  = debug/gts-cpt
 
 # Compiler, Linker Defines
-CPP      = /usr/bin/g++
+CPP      = g++
 CPPFLAGS = -Wall -ansi -pedantic -g -O3 -funroll-loops -ftree-vectorize -pg -lc
 
 LIBPATH += -L/usr/local/lib

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#clear && make clean && ./run sphere20.gts
+
+GERRIS_PREFIX=$HOME/gerris-deploy/prefix
+PATH=$GERRIS_PREFIX/bin:$PATH
 mkdir -p out
 make clean && ./run data/horse4.gts
-
-exit $?
 

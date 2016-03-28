@@ -1,0 +1,22 @@
+* Installation
+
+** Install dependencies
+wget  http://portal.nersc.gov/project/visit/releases/2.2.2/visit2.2.2.tar.gz
+tar zxvf visit2.2.2.tar.gz
+
+wget https://wci.llnl.gov/content/assets/docs/simulation/computer-codes/silo/silo-4.10.2/silo-4.10.2.tar.gz
+tar zxvf silo-4.10.2.tar.gz
+cd silo-4.10.2
+./configure --prefix=$HOME/src/prefix-gts-cpt
+make -j
+make install
+cd ../
+
+** Build cpp-gts
+git clone https://github.com/slitvinov/gts-cpt
+cd gts
+
+GERRIS_PREFIX=$HOME/gerris-deploy/prefix
+PATH=$GERRIS_PREFIX/bin:$PATH
+cd gts-cpt
+make

@@ -3,19 +3,20 @@ SRC  = src/main.cpp src/gtstools.cpp src/cpt.cpp src/export.cpp
 OBJ  = $(SRC:.cpp=.o)
 LIBS = -lgts -lglib-2.0 -lsilo -lm -ldl `pkg-config --libs gts`
 EXE  = debug/gts-cpt
+SILO_PREFIX=../prefix-gts-cpt
 
 # Compiler, Linker Defines
 CPP      = /usr/bin/g++
 CPPFLAGS = -Wall -ansi -pedantic -g -O3 -funroll-loops -ftree-vectorize -pg -lc
 
-LIBPATH += -L/usr/local/lib
+LIBPATH += -L/usr/local/lib -L${SILO_PREFIX}/lib
 
 INCLPATH = -I./include/ 
 INCLPATH+= `pkg-config --cflags gts`
 INCLPATH+= -I/usr/lib64/glib-2.0/include 
 INCLPATH+= -I/usr/lib/glib-2.0/include 
 INCLPATH+= -I/usr/local/include 
-INCLPATH+= -I../silo/include
+INCLPATH+= -I${SILO_PREFIX}/include
 INCLPATH+= -I../visit2.2.2/src/sim/V1/lib/
 
 RM       = /bin/rm -f

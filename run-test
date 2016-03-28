@@ -6,3 +6,4 @@ PATH=$GERRIS_PREFIX/bin:$PATH
 mkdir -p out
 make clean && ./run data/horse4.gts
 
+./scripts/bov2sdf.awk wall.bov wall.sdf

@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #clear && make clean && ./run sphere20.gts
-clear && make clean && ./run ~/tcc/data/horse.gts
+mkdir -p out
+make clean && ./run data/horse4.gts
 
 exit $?
 

@@ -286,6 +286,9 @@ int calc_idx_box(SizeVector idx_begin, SizeVector idx_end, GtsVector box_begin, 
 		if(idx_begin[i] > 1) idx_begin[i]--;
 		if(idx_end[i] < pSignedDistance->size[i]-1) idx_end[i]++;
 
+		idx_begin[i] = idx_begin[i]<0                        ? 0                          : idx_begin[i];
+		idx_end[i]   = idx_end[i]>pSignedDistance->size[i]-1 ? pSignedDistance->size[i]-1 : idx_end[i];
+
 		quantCell += (idx_end[i] - idx_begin[i] + 1);
 	}
 	

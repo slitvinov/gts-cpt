@@ -1,7 +1,7 @@
 # Source, Executable, Includes, Library Defines
 SRC  = src/main.cpp src/gtstools.cpp src/cpt.cpp src/export.cpp
 OBJ  = $(SRC:.cpp=.o)
-LIBS = -lgts -lglib-2.0 -lsilo -lm -ldl `pkg-config --libs gts`
+LIBS = -lgts -lglib-2.0 -lm -ldl `pkg-config --libs gts` `pkg-config --libs silo`
 EXE  = debug/gts-cpt
 SILO_PREFIX=../prefix-gts-cpt
 

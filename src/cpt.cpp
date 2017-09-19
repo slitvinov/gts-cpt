@@ -3,8 +3,6 @@
 #include "gtscpt.h"
 #include "cpt.h"
 #include <silo.h>
-#include <VisItControlInterface_V1.h>
-
 //#define CPT_VERBOSE_DEBUG
 
 ////////////////////////////////////////////////////////////////////////////////

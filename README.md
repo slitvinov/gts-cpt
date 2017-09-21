@@ -9,7 +9,7 @@
 
 	make install
 
-## horse test
+## an example
 
 	l=-0.1 h=0.1
 	n=200

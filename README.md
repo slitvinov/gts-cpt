@@ -11,9 +11,11 @@
 
 ## horse test
 
-	b="--begin-x -1.5 --begin-y -1.5 --begin-z -1.5"
-	e="--end-x 1.5 --end-y 1.5 --end-z 1.5"
-	s="--size-x 200 --size-y 200 --size-z 200"
+	l=-0.1 h=0.1
+	n=200
+	b="--begin-x $l --begin-y $l --begin-z $l"
+	e="--end-x   $h --end-y   $h --end-z   $h"
+	s="--size-x $n --size-y $n --size-z $n"
 
 	cpt horse4 data/horse4.gts $b $e $s
 

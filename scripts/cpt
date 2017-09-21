@@ -24,5 +24,20 @@ cpt0() (
 cpt0 "$@" < "$i"
 if test ! -f "$d/wall.bov"; then err 'no output file of gts-cpt'; fi
 
-cp -- "$d/wall.bov"    "$bov"
-cp -- "$d/wall.values" "$values"
+bov_cp () {
+    local val from to
+    val="$1"; shift
+    from="$1"; shift
+    to="$1"; shift
+
+    val=`basename "$val"`
+    ${AWK-awk} -v v="$val" \
+    '
+       /^[\t ]*#/          { print                 ; next }
+       /^[\t ]*DATA_FILE:/ { print "DATA_FILE: " v ; next }
+                           { print }
+    ' "$from" > "$to"
+}
+
+bov_cp    "$values" "$d/wall.bov"    "$bov"
+cp     --           "$d/wall.values" "$values"

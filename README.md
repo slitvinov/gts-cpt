@@ -3,7 +3,10 @@
 ## dependencies
 
 * gts library
+  http://gts.sourceforge.net
+
 * silo library
+   http://wci.llnl.gov/simulation/computer-codes/silo
 
 ## compile
 

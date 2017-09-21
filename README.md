@@ -12,7 +12,7 @@
 
 	make install
 
-## an example
+# Example
 
 	l=-0.1 h=0.1
 	n=200

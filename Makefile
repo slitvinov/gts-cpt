@@ -28,6 +28,7 @@ $(EXE): $(OBJ)
 clean:
 	$(RM) $(OBJ) $(EXE) src/*.o
 
-install:; cp $(EXE) $(WRP) $(BIN)/
+install: $(EXE)
+	cp $(EXE) $(WRP) $(BIN)/
 
 .PHONY: clean install

@@ -1,3 +1,5 @@
+err () { printf 'cpt: %s\n' "$*" >&2; }
+
 d=/tmp/cpt.$$
 
 trap 'rm -rf $d' 0 1 2 3 15

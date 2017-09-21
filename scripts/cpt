@@ -3,9 +3,13 @@ d=/tmp/cpt.$$
 trap 'rm -rf $d' 0 1 2 3 15
 mkdir -p "$d"
 
-# input and output file
+# output base file name and input file
 o="$1"; shift
 i="$1"; shift
+
+# output files
+bov="$o.bov"
+values="$o.values"
 
 cpt0() (
     cd $d
@@ -14,3 +18,5 @@ cpt0() (
 )
 
 cpt0 "$@" < "$i"
+cp -- "$d/wall.bov"    "$bov"
+cp -- "$d/wall.values" "$values"

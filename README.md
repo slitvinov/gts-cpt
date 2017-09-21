@@ -1,3 +1,9 @@
+# introduction
+
+The code is rescued from code.google.com/p/gts-cpt
+
+See [README](README)
+
 # installation
 
 ## dependencies

@@ -1,4 +1,4 @@
-err () { printf 'cpt: %s\n' "$*" >&2; }
+err () { printf 'cpt: %s\n' "$*" >&2; exit 1; }
 
 d=/tmp/cpt.$$
 
@@ -8,6 +8,8 @@ mkdir -p "$d"
 # output base file name and input file
 o="$1"; shift
 i="$1"; shift
+
+if test ! -f "$i"; then err "cannot read file: $i"; fi
 
 # output files
 bov="$o.bov"
@@ -20,5 +22,7 @@ cpt0() (
 )
 
 cpt0 "$@" < "$i"
+if test ! -f "$d/wall.bov"; then err 'no output file of gts-cpt'; fi
+
 cp -- "$d/wall.bov"    "$bov"
 cp -- "$d/wall.values" "$values"
